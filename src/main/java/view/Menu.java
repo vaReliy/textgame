@@ -13,18 +13,17 @@ public class Menu {
     }
 
     private void printHello() {
-        System.out.println("Enter String:");
-        String str = kb.inputLineFromKB();
-        System.err.println(kb.isNumber(str));
-        System.out.println("Enter number:");
-        str = kb.inputLineFromKB();
-        System.err.println(kb.isNumber(str));
-        System.out.println("Enter String:");
-        str = kb.inputLineFromKB();
-        System.err.println(kb.isNumber(str));
-        System.out.println("Enter number:");
-        str = kb.inputLineFromKB();
-        System.err.println(kb.isNumber(str));
+        int choise;
+        ContextMenu contextMenu = new ContextMenu();
+        contextMenu.printMenu();
+        choise = kb.readInt();
+        System.out.println("\nYou entered '" + choise + "'.");
+        contextMenu.printMenu();
+        choise = kb.readInt();
+        System.out.println("\nYou entered '" + choise + "'.");
+        contextMenu.printMenu();
+        choise = kb.readInt();
+        System.out.println("\nYou entered '" + choise + "'.");
     }
 
 

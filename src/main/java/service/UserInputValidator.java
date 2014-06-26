@@ -46,6 +46,10 @@ public class UserInputValidator {
         return val;
     }
 
+    public Integer readInt(){
+        return toNumber(inputLineFromKB());
+    }
+
     public void closeKB(){
         if (kb != null) {
             try {
