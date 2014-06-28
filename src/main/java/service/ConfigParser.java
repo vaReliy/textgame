@@ -14,35 +14,38 @@ public class ConfigParser {
     private final int MENU_CONTENT = 7;
     private final int MENU_CHOISE_OPTIONS = 8;
     private Map<Integer, String[]> gameConfigValues;
-    private Set<Entity> entitySet;
+    private Map<Integer, Entity> entityMap;
     private boolean isCreatedContent;
 
+    public ConfigParser() {
+        createEntities();
+    }
 
     public boolean isCreatedContent() {
         return isCreatedContent;
     }
 
-    public Set<Entity> getGameContent(){
-        createEntities();
-        if (entitySet != null) {
-            return entitySet;
+    public Map<Integer, Entity> getEntityMap() {
+        if(entityMap == null){
+            createEntities();
+            return entityMap;
         }
-        return null;
+        return entityMap;
     }
 
-
     private void createEntities() {
-        entitySet = new HashSet<Entity>();
-        gameConfigValues = new ConfigReader().getGameConfig();
-        if (gameConfigValues != null) {
+        if (gameConfigValues == null) {
+            gameConfigValues = new ConfigReader().getGameConfig();
+            isCreatedContent = false;
+            entityMap = new HashMap<Integer, Entity>();
             Iterator<Map.Entry<Integer, String[]>> it = gameConfigValues.entrySet().iterator();
-            while (it.hasNext()){
+            while (it.hasNext()) {
                 Map.Entry<Integer, String[]> entry = it.next();
                 Entity entity = setEntityFields(entry.getKey(), entry.getValue());
-                entitySet.add(entity);
+                entityMap.put(entity.getKey(), entity);
             }
+            isCreatedContent = true;
         }
-        isCreatedContent = true;
     }
 
     private Entity setEntityFields(Integer key, String[] values){
@@ -68,8 +71,8 @@ public class ConfigParser {
     }
 
     public void printContent(){
-        for (Entity entity: entitySet) {
-            System.out.println(entity);
+        for (Map.Entry<Integer, Entity> entity: entityMap.entrySet()) {
+            System.out.println(entity.getValue().getKey());
         }
     }
 
