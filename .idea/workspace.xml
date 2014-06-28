@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="17b86fa2-718d-488b-bc89-258d8bdfbf0b" name="Default" comment="update project: create ConfigParser">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/view/ContextMenu.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/game_default.src" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/view/Menu.java" afterPath="$PROJECT_DIR$/src/main/java/view/Menu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/game_default.cfg" afterPath="$PROJECT_DIR$/src/main/resources/game_default.cfg" />
+    <list default="true" id="17b86fa2-718d-488b-bc89-258d8bdfbf0b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="TextGame.iws" />
@@ -699,7 +695,7 @@
       <workItem from="1403763814240" duration="18963000" />
       <workItem from="1403802856250" duration="2853000" />
       <workItem from="1403882757617" duration="32076000" />
-      <workItem from="1403964835270" duration="6958000" />
+      <workItem from="1403964835270" duration="7071000" />
     </task>
     <task id="LOCAL-00001" summary="update project info and begin work">
       <created>1403732523173</created>
@@ -745,11 +741,15 @@
       <created>1403970841275</created>
       <updated>1403970841275</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="update project:  all project">
+      <created>1403972770631</created>
+      <updated>1403972770631</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77711000" />
+    <option name="totallyTimeSpent" value="77824000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1282" height="752" extended-state="0" />
@@ -836,7 +836,8 @@
     <MESSAGE value="commit gameconfig" />
     <MESSAGE value="update project: create Menu&#10;" />
     <MESSAGE value="game_config: bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="game_config: bug fix" />
+    <MESSAGE value="update project:  all project" />
+    <option name="LAST_COMMIT_MESSAGE" value="update project:  all project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
