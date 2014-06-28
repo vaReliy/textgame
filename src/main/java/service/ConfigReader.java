@@ -1,13 +1,8 @@
 package service;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
+
 
 public class ConfigReader {
     private Map<Integer, String[]> gameConfigValues;
@@ -23,7 +18,12 @@ public class ConfigReader {
         gameConfigValues = configReadFromFile(fileNamePath);
     }
 
+    private Map<Integer, String[]> configReadDefault(){
+        return configReadFromFile(fileNamePath);
+    }
+
     private Map<Integer, String[]> configReadFromFile(String fileName){
+//        Map<Integer, String[]> config = new TreeMap<Integer, String[]>();
         Map<Integer, String[]> config = new HashMap<Integer, String[]>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -37,8 +37,8 @@ public class ConfigReader {
                 config.put(key, values);
             }
             System.out.println("Configuration read!");
-            correctStringsEntersInConfig(config);
-//            printConfigAll(config);
+            gameConfigValues = correctStringsEntersInConfig(config);
+//            printConfigAll();
             isCorrectReadConfig = true;
         } catch (FileNotFoundException fnfe) {
             System.err.println("Wrong filename: " + fnfe);
@@ -60,7 +60,7 @@ public class ConfigReader {
         }
     }
 
-    private void correctStringsEntersInConfig(Map<Integer, String[]> gameConfigValues){
+    private Map<Integer, String[]> correctStringsEntersInConfig(Map<Integer, String[]> gameConfigValues){
         Iterator<Map.Entry<Integer, String[]>> it = gameConfigValues.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry<Integer, String[]> entry = it.next();
@@ -68,6 +68,7 @@ public class ConfigReader {
                  entry.getValue()[i] = convertEnters(new StringBuilder(entry.getValue()[i]));
             }
         }
+        return gameConfigValues;
     }
 
     private String convertEnters(StringBuilder sb) {
@@ -89,6 +90,6 @@ public class ConfigReader {
 
     /*public static void main(String[] args) {
         ConfigReader cr = new ConfigReader();
-        cr.printConfigAll();
+        cr.configReadDefault();
     }*/
 }
