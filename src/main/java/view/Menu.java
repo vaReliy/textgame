@@ -1,11 +1,8 @@
 package view;
 
 import model.Entity;
-import service.ConfigParser;
-import service.UserInputValidator;
-
-import java.util.Iterator;
-import java.util.Map;
+import service.*;
+import java.util.*;
 
 public class Menu {
     private final int EXIT = 0;
@@ -17,14 +14,12 @@ public class Menu {
     private final int LOSE = 888;
     private final int WINNER = 999;
     private UserInputValidator kb;
-//    private ConfigParser configParser;
     private Map<Integer, Entity> entityMap;
     private Entity entity;
 
 
     public void start() {
         kb = new UserInputValidator();
-//        configParser = new ConfigParser();
         entityMap = new ConfigParser().getEntityMap();
         printHello();
         startProgram();
@@ -54,23 +49,18 @@ public class Menu {
                     break;
                 case CHOICE_1:
                     entity = getEntityFromMap(entity.getChoice1());
-//                    choice = kb.readInt();
                     break;
                 case CHOICE_2:
                     entity = getEntityFromMap(entity.getChoice2());
-//                    choice = kb.readInt();
                     break;
                 case CHOICE_3:
                     entity = getEntityFromMap(entity.getChoice3());
-//                    choice = kb.readInt();
                     break;
                 case CHOICE_4:
                     entity = getEntityFromMap(entity.getChoice4());
-//                    choice = kb.readInt();
                     break;
                 case CHOICE_5:
                     entity = getEntityFromMap(entity.getChoice5());
-//                    choice = kb.readInt();
                     break;
                 case LOSE:
                     //TODO LOSE
@@ -93,12 +83,30 @@ public class Menu {
             Map.Entry<Integer, Entity> entry = it.next();
             if (entry.getKey() == key) {
                 entity = entry.getValue();
+                actionListener(entity);
                 System.out.println(entity.getMenuContent());
                 System.out.println(entity.getMenuChoiceOptions());
                 return entity;
             }
         }
         return entity;
+    }
+
+    private void actionListener(Entity entity){
+        String youLose = "DEAD";
+        String youWin = "WIN";
+        if (entity != null) {
+            if (entity.getMenuChoiceOptions().equals(youLose)) {
+                System.err.println(entity.getMenuContent());
+                System.err.println("--- --- --- --- YOU LOSE. Re-try in next time ;) --- --- --- ---");
+                System.exit(0);
+            }
+            if (entity.getMenuChoiceOptions().equals(youWin)) {
+                System.err.println(entity.getMenuContent());
+                System.err.println("*** *** *** **** *** *** *** YOU WIN! *** *** **** *** *** *** ***");
+                System.exit(0);
+            }
+        }
     }
 
 }
