@@ -25,6 +25,9 @@
         <module name="TextGame" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="TextGame" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 

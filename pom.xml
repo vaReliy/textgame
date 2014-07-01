@@ -6,7 +6,7 @@
 
     <groupId>textgame</groupId>
     <artifactId>textgame</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
 
     <properties>
         <junit.version>4.8.2</junit.version>
@@ -17,6 +17,7 @@
         <spring.version>3.2.2.RELEASE</spring.version>
         <hibernate.version>3.5.6-Final</hibernate.version>
         <mysql.connector.version>5.1.21</mysql.connector.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -27,5 +28,66 @@
         <scope>test</scope>
     </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!--add classpath Main-->
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!--add resources to project-->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.5</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}/src/main/resources/${project.name}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.sourceDirectory}/resources/${project.name}</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>**/*.cfg</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

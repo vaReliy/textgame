@@ -8,23 +8,38 @@ public class ConfigReader {
     private Map<Integer, String[]> gameConfigValues;
     private boolean isCorrectReadConfig = false;
     private String fileNamePath = "src/main/resources/game_default.cfg";
+//    private String fileNamePath = "game_default.cfg";
 
 
     public ConfigReader() {
-        gameConfigValues = configReadFromFile(fileNamePath);
     }
 
-    public ConfigReader(String fileNamePath) {
-        gameConfigValues = configReadFromFile(fileNamePath);
+    protected Map<Integer, String[]> configReadFromFile(){
+        Map<Integer, String[]> config = new HashMap<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fileNamePath));
+            String line;
+            Integer key;
+            while ((line = br.readLine()) != null) {
+                String[] valuesArr = line.split("~");
+                key = Integer.parseInt(valuesArr[0]);
+                String[] values = Arrays.copyOfRange(valuesArr, 1, valuesArr.length);
+                config.put(key, values);
+            }
+            System.out.println("Configuration read!");
+            gameConfigValues = correctStringsEntersInConfig(config);
+            isCorrectReadConfig = true;
+        } catch (FileNotFoundException fnfe) {
+            System.err.println("Wrong filename: " + fnfe);
+        } catch (NumberFormatException nfe) {
+            System.err.println("Wrong values in config data file! Configuration not load!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return config;
     }
 
-    private Map<Integer, String[]> configReadDefault(){
-        return configReadFromFile(fileNamePath);
-    }
-
-    private Map<Integer, String[]> configReadFromFile(String fileName){
-//        Map<Integer, String[]> config = new TreeMap<Integer, String[]>();
-        Map<Integer, String[]> config = new HashMap<Integer, String[]>();
+    protected boolean verifyConfigKeys(String fileName){
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             String line;
@@ -32,26 +47,23 @@ public class ConfigReader {
             while ((line = br.readLine()) != null) {
                 String[] valuesArr = line.split("~");
                 key = Integer.parseInt(valuesArr[0]);
-                String[] values = Arrays.copyOfRange(valuesArr, 1, valuesArr.length);
-                System.out.println();
-                config.put(key, values);
             }
-            System.out.println("Configuration read!");
-            gameConfigValues = correctStringsEntersInConfig(config);
-//            printConfigAll();
-            isCorrectReadConfig = true;
+            fileNamePath = fileName;
+            return true;
         } catch (FileNotFoundException fnfe) {
             System.err.println("Wrong filename: " + fnfe);
+            System.exit(0);
         } catch (NumberFormatException nfe) {
             System.err.println("Wrong values in config data file! Configuration not load!");
-//            nfe.printStackTrace();
+            System.exit(0);
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(0);
         }
-        return config;
+        return false;
     }
 
-    private void printConfigAll(){
+    protected void printConfigAll(){
         Iterator<Map.Entry<Integer, String[]>> it = gameConfigValues.entrySet().iterator();
         while (it.hasNext()){
             Map.Entry<Integer, String[]> entry = it.next();
@@ -88,8 +100,4 @@ public class ConfigReader {
         return null;
     }
 
-    /*public static void main(String[] args) {
-        ConfigReader cr = new ConfigReader();
-        cr.configReadDefault();
-    }*/
 }

@@ -8,9 +8,6 @@ public class UserInputValidator {
     public UserInputValidator() {
     }
 
-
-
-
     public String inputLineFromKB() {
         String line = "";
         try {
