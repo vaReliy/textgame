@@ -16,11 +16,11 @@ public class Menu {
 
 
     public void printHello() {
-        System.out.println(" --------------------------------------------------------------------------------------");
-        System.out.println("|  Как ужасно болит голова и нет воспоминаний о последних событиях..                   |");
-        System.out.println("|  Ощущение не знакомого места не покидает тебя..                                      |");
-        System.out.println("|  В глазах начинает проясняться, ты встаешь и..                                       |");
-        System.out.println(" -------------------------------------------------------------------------------------- ");
+        System.out.println(" ---------------------------------------------------------------------");
+        System.out.println("|  Как ужасно болит голова и нет воспоминаний о последних событиях..  |");
+        System.out.println("|  Ощущение не знакомого места не покидает тебя..                     |");
+        System.out.println("|  В глазах начинает проясняться, ты встаешь и..                      |");
+        System.out.println(" --------------------------------------------------------------------- ");
     }
 
 
@@ -78,12 +78,16 @@ public class Menu {
         if (entity != null) {
             if (entity.getMenuChoiceOptions().equals(youLose)) {
                 System.err.println(entity.getMenuContent());
-                System.err.println("--- --- --- --- YOU LOSE. Re-try in next time ;) --- --- --- ---");
+                System.err.println("--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ");
+                System.err.println("--- --- --- --- YOU LOSE. Re-try in next time ;) -- --- --- ---");
+                System.err.println("--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ");
                 System.exit(0);
             }
             if (entity.getMenuChoiceOptions().equals(youWin)) {
                 System.err.println(entity.getMenuContent());
+                System.err.println("*** *** *** **** *** *** *** ******** *** **** *** *** *** *** ***");
                 System.err.println("*** *** *** **** *** *** *** YOU WIN! *** *** **** *** *** *** ***");
+                System.err.println("*** *** *** **** *** *** *** ******** *** **** *** *** *** *** ***");
                 System.exit(0);
             }
         }

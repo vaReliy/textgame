@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>textgame</groupId>
-    <artifactId>textgame</artifactId>
-    <version>0.2</version>
+    <artifactId>consolegame</artifactId>
+    <version>0.3</version>
 
     <properties>
         <junit.version>4.8.2</junit.version>
@@ -73,10 +73,10 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.outputDirectory}/src/main/resources/${project.name}</outputDirectory>
+                            <outputDirectory>${project.build.outputDirectory}/src/main/resources/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.build.sourceDirectory}/resources/${project.name}</directory>
+                                    <directory>src/main/${project.build.sourceDirectory}/resources/${project.name}</directory>
                                     <filtering>true</filtering>
                                     <includes>
                                         <include>**/*.cfg</include>
