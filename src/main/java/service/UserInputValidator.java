@@ -15,7 +15,7 @@ public class UserInputValidator {
             line = kb.readLine();
         } catch (Exception e) {
             System.err.println(e);
-        } /* TODO close kb! */
+        } /* close kb! */
         return line;
     }
 
