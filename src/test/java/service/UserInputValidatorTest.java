@@ -5,39 +5,78 @@ import static junit.framework.Assert.*;
 
 public class UserInputValidatorTest {
     private UserInputValidator validator;
-    private String inputString;
+    private String inputStringText;
+    private String inputStringCorrectValue;
+    private String inputStringCorrectNegativeValue;
+    private String inputStringNoCorrectValue;
 
     @Before
     public void setUp() throws Exception {
-        inputString = "Test string";
+        inputStringText = "Test string";
+        inputStringCorrectValue = "1203";
+        inputStringCorrectNegativeValue = "-33";
+        inputStringNoCorrectValue = "1122 ";
         validator = new UserInputValidator();
     }
 
     @Test
-    public void testIsNumber() {
-        assertTrue(validator.isNumber("12033321"));
-        assertFalse(validator.isNumber(inputString));
-        assertFalse(validator.isNumber(" 1122"));
-        assertFalse(validator.isNumber(" 11  22"));
-        assertFalse(validator.isNumber("223 "));
-        assertFalse(validator.isNumber("!223"));
-        assertTrue(validator.isNumber("-1"));
-        assertTrue(validator.isNumber("0"));
-        assertTrue(validator.isNumber("-3"));
-        assertFalse(validator.isNumber("-3 "));
+    public void testIsNumberCorrect() {
+        assertTrue(validator.isNumber(inputStringCorrectValue));
     }
 
     @Test
-    public void testToNumber() {
-        System.out.println("testToNumber: " + validator.toNumber("12033321"));
-        System.out.println("testToNumber: " + validator.toNumber("inputString"));
-        System.out.println("testToNumber: " + validator.toNumber(" 1122"));
-        System.out.println("testToNumber: " + validator.toNumber(" 11  22"));
-        System.out.println("testToNumber: " + validator.toNumber("223 "));
-        System.out.println("testToNumber: " + validator.toNumber("!223"));
-        System.out.println("testToNumber: " + validator.toNumber("-1"));
-        System.out.println("testToNumber: " + validator.toNumber("0"));
-        System.out.println("testToNumber: " + validator.toNumber("-3"));
-        System.out.println("testToNumber: " + validator.toNumber("-3 "));
+    public void testIsNumberCorrectNegativeValue() {
+        assertTrue(validator.isNumber(inputStringCorrectNegativeValue));
     }
+
+    @Test
+    public void testIsNumberNoCorrectValue() {
+        assertFalse(validator.isNumber(inputStringNoCorrectValue));
+    }
+
+    @Test
+    public void testIsNumberFromString() {
+        assertFalse(validator.isNumber(inputStringText));
+    }
+
+    @Test
+    public void testToNumberCorrect() {
+        int value = validator.toNumber(inputStringCorrectValue);
+        boolean result = false;
+        if (value != -1) {
+            result = true;
+        }
+        assertTrue(result);
+    }
+
+    @Test
+    public void testToNumberCorrectNegativeValue() {
+        int value = validator.toNumber(inputStringCorrectNegativeValue);
+        boolean result = false;
+        if (value != -1 && value < 0) {
+            result = true;
+        }
+        assertTrue(result);
+    }
+
+    @Test
+    public void testToNumberNoCorrectValue() {
+        int value = validator.toNumber(inputStringNoCorrectValue);
+        boolean result = false;
+        if (value == -1) {
+            result = true;
+        }
+        assertTrue(result);
+    }
+
+    @Test
+    public void testToNumberFromString() {
+        int value = validator.toNumber(inputStringText);
+        boolean result = false;
+        if (value == -1) {
+            result = true;
+        }
+        assertTrue(result);
+    }
+
 }
