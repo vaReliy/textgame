@@ -31,6 +31,7 @@ public class ConfigReader {
             isCorrectReadConfig = true;
         } catch (FileNotFoundException fnfe) {
             System.err.println("Wrong filename: " + fnfe);
+            System.exit(0);
         } catch (NumberFormatException nfe) {
             System.err.println("Wrong values in config data file! Configuration not load!");
         } catch (IOException e) {

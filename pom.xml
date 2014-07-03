@@ -76,8 +76,8 @@
                             <outputDirectory>${project.build.outputDirectory}/src/main/resources/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>src/main/${project.build.sourceDirectory}/resources/${project.name}</directory>
-                                    <filtering>true</filtering>
+                                    <directory>src/main/resources/</directory>
+                                    <!--<filtering>true</filtering>-->
                                     <includes>
                                         <include>**/*.cfg</include>
                                     </includes>
